@@ -1,0 +1,20 @@
+apiVersion: kpack.io/v1alpha1
+kind: Builder
+metadata:
+  name: base-builder
+spec:
+  tag: junyimsft/my-base-builder
+  serviceAccount: dockerhub-service-account
+  stack: 
+    name: base-stack
+    kind: ClusterStack
+  store: 
+    name: base-store
+    kind: ClusterStore
+  order:
+  - group:
+    - id: paketo-buildpacks/java
+  - group:
+    - id: paketo-buildpacks/dotnet-core
+  - group:
+    - id: paketo-buildpacks/nodejs
